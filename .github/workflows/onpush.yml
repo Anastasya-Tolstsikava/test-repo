@@ -1,5 +1,5 @@
 name: On-push action
-run-name: Commit to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: Push to test-repo by @${{ github.actor }}
 on:
   push:
     branches-ignore:
@@ -7,10 +7,20 @@ on:
     paths:
       - 'CHANGELOG.md'
 jobs:
-  my_first_job:
-    name: My first job
+  check-changelog-changes:
+    name: Validate changelog
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      # use action to get files that changed
+      - uses: lots0logs/gh-action-get-changed-files@2.1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+       
       - name: Run a script
-        run: echo Hello World
+        run: |
+          echo "job: running script to check changed files:"
+          chmod +x ./.github/workflows/auto-check-changed-files.sh
+          ./.github/workflows/auto-check-changed-files.sh
+          echo "job: Done"

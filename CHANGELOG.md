@@ -1,6 +1,6 @@
 # Unreleased
 
-# v2.80.0 (2022-11-22)
+# v2.80.1 (2022-11-22)
 
 * AI-10683 - Rename replication agents
 

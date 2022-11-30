@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHANGED=$(git diff origin/main...HEAD --name-only)
-CHANGELOG_IN_MASTER=$(git show origin/main:CHANGELOG.md)
+CHANGED=$(git diff main...HEAD --name-only)
+CHANGELOG_IN_MASTER=$(git show main:CHANGELOG.md)
 THIRD_ROW=$(head -3 CHANGELOG.md | tail -1)
 THIRD_ROW_IN_MASTER=$(echo "${CHANGELOG_IN_MASTER}" | head -3 | tail -1)
 

@@ -11,7 +11,19 @@ jobs:
     name: Validate changelog
     runs-on: ubuntu-latest
     steps:
+      - name: Install git 
+        run: |
+          apt-get install -y git
+          git --version
+          echo "Path is ... $PATH"
+          PATH=$PATH:$(which git)
+          echo "Path is ... $PATH"
+          
       - uses: actions/checkout@v3
+      
+      - name: Debug - Check if .git folder exists
+        run: |
+          ls -lah
        
       - name: Run a script
         run: |
